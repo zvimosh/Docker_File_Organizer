@@ -1,0 +1,30 @@
+#configuration file for FileOrganizer
+Folders:
+    # for windows use double slashes i.e c:\\source, for linux use forward slash i.e /usr/source
+    source_folder: C:\\ScriptTest  # source folder where to search for files
+    destination_folder: C:\\ScriptDest #destination folder where to move files to
+    log_location: C:\\ScriptTestArchive #log location and csv report location
+Files:
+    # a list of file extensions to include in search
+    source_files_ext: [
+            '.avi', '.mpg', '.mkv', '.mp4', '.wmv', 
+            '.flv', '.mpeg', '.mov', '.m4v', '.webm', 
+            '.3gp', '.ts', '.f4v', '.sub', '.srt'
+        ]
+Logs:
+    # if enable_log is disabled there will not be any output (possible values: True | False)
+    enable_log: True
+    # if enable_file_log is True it will create file log  (possible values: True | False)
+    enable_file_log: True
+    #if enable_console_log is True it will enable output to console  (possible values: True | False)
+    enable_console_log: True
+    #log level  (possible values: INFO, ERROR, WARNING, DEBUG)
+    log_level : debug
+    # if generate_csv is set True, will create csv report  (possible values: True | False)
+    generate_csv: True
+    # Name of the csv report file
+    csv_report_name: fileOrganizer_report.csv
+Other:
+    # if recursive is True, will search files in root and sub folders,
+    # if false will only search in root folder  (possible values: True | False)
+    recursive: True

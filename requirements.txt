@@ -1,0 +1,6 @@
+# FileOrganizer version 2.2   | 14/09/2021
+# Requirements:
+# Python version 3.9
+#Required Python Libraries
+# confuse library
+confuse

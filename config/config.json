@@ -1,0 +1,37 @@
+{
+    "Folders": {
+      "source_folder": "C:\\\\ScriptTest",
+      "destination_folder": "C:\\\\ScriptDest",
+      "log_location": "C:\\\\ScriptTestArchive"
+    },
+    "Files": {
+      "source_files_ext": [
+        ".avi",
+        ".mpg",
+        ".mkv",
+        ".mp4",
+        ".wmv",
+        ".flv",
+        ".mpeg",
+        ".mov",
+        ".m4v",
+        ".webm",
+        ".3gp",
+        ".ts",
+        ".f4v",
+        ".sub",
+        ".srt"
+      ]
+    },
+    "Logs": {
+      "enable_log": true,
+      "enable_file_log": true,
+      "enable_console_log": true,
+      "log_level": "debug",
+      "generate_csv": true,
+      "csv_report_name": "fileOrganizer_report.csv"
+    },
+    "Other": {
+      "recursive": true
+    }
+  }

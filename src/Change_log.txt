@@ -1,0 +1,16 @@
+# version 2.0:
+# Built the script from the beginning
+# changed Functions to be standalone instead of calling functions from another.
+#
+# version 2.1:
+# Fixed Bugs:
+#           1. empty log file was created when "enable_log" was set to 'True' and "enable_file_log" was set to 'False'
+#           2. change variable naming conversion
+#           3. added additional validation for "source_folder", fixed bug if variable was set to None
+#           4. added path validation for source_folder
+#           5. added additional validation for "destination_folder", fixed bug if variable was set to None
+# version 2.2:
+# Fixed Bugs:
+#           1. moved all user confiuration to yaml config file
+#           2. added yaml parser with 'confuse' library
+#           3. reorgnized the code
