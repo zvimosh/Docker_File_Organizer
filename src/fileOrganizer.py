@@ -111,7 +111,7 @@ def read_config():
     print(config["Folders"])
     print('-----------------')
     print (source_folder, dest_folder,log_location,source_files_ext,recursive,enable_log,log_level,enable_file_log,enable_console_log,generate_csv,csv_report_name)
-    exit(0)
+
 
 # logger function
 # creates logger handler
