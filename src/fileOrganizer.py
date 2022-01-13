@@ -3,11 +3,14 @@
 import csv
 import filecmp
 import logging
+from msilib.schema import Error
 import os
 import shutil
 import time
+from xml.etree.ElementTree import tostring
 import confuse
 import json
+import yaml
 
 """
 This script organizes files into separate source folders,
@@ -44,6 +47,9 @@ To use the script, the user needs to set the following variables in config.yaml 
 # Application Name
 AppName = 'FileOrganizer'
 
+# Application configuration file
+config_file = './config.yaml'
+
 # Configure how many times to run script for timing \\ DO NOT MODIFY THIS VALUE!
 RUNS = 1
 
@@ -53,37 +59,41 @@ RUNS = 1
 
 
 # Configuration function
-# Read Configuration file
+# Read Configuration file from yaml config
 def read_config_yaml():
+    #read ymal config
+    with open(config_file, 'r', encoding='utf-8') as yaml_data:
+        try:
+            yaml_config = yaml.safe_load(yaml_data)
+        except yaml.YAMLError as exc:
+            print(exc)       
+        return (yaml_config)
 
-    # set configuration file settings
-    config = confuse.Configuration(AppName)  #Application Name
-    config.set_file('./config.yaml')         #Configuration File location
-    
-    # Parse configuration file
-    # Set global variables
-    global source_folder, dest_folder, log_location, source_files_ext, \
-        recursive, enable_log, log_level, enable_file_log, enable_console_log, \
-        generate_csv, csv_report_name
-    # parse config file into variables
-    source_folder = config['Folders']['source_folder'].get(confuse.STRING)
-    dest_folder = config['Folders']['destination_folder'].get(confuse.STRING)
-    log_location = config['Folders']['log_location'].get(confuse.STRING)
-    source_files_ext = config['Files']['source_files_ext'].as_str_seq()
-    recursive = config['Other']['recursive'].get()
-    enable_log = config['Logs']['enable_log'].get()
-    log_level = config['Logs']['log_level'].get()
-    enable_file_log = config['Logs']['enable_file_log'].get()
-    enable_console_log = config['Logs']['enable_console_log'].get()
-    generate_csv = config['Logs']['generate_csv'].get()
-    csv_report_name = config['Logs']['csv_report_name'].get(confuse.STRING)
-    
 
 def read_config():
+    # read yaml config and convert to json config
+    config_data = read_config_yaml() # reads yaml config
+    config = json.dumps(config_data) # dump yaml into json encoded object
+    print('-----------------')
+    print(config)
 
-    # set configuration file settings
-    config = './config.json'        #Configuration File location
-    config = json.load(config)     #Load configuration file
+    object = json.dumps(config) #
+    print('-----------------')
+    print(object)
+    config = json.loads(object)
+    ##writing the files is not working
+    with open('./app.config', 'w', encoding='utf-8') as fpo:
+        try:
+           object = json.dump(config, fpo, indent=2)
+        except Error as e:
+            print(e)
+    print('-----------------')
+    print(config)
+    config = json.loads(config)
+    print('-----------------')
+    print(config)
+
+    #print(config)
 
     # parse config file into variables
     source_folder = config["Folders"]["source_folder"]
@@ -97,6 +107,11 @@ def read_config():
     enable_console_log = config['Logs']['enable_console_log']
     generate_csv = config['Logs']['generate_csv']
     csv_report_name = config['Logs']['csv_report_name']
+    print('-----------------')
+    print(config["Folders"])
+    print('-----------------')
+    print (source_folder, dest_folder,log_location,source_files_ext,recursive,enable_log,log_level,enable_file_log,enable_console_log,generate_csv,csv_report_name)
+    exit(0)
 
 # logger function
 # creates logger handler
